@@ -66,4 +66,7 @@ public class DateString {
                 /(1000*60*60*24));
     }
 
+    public boolean isEmpty() {
+        return false;
+    }
 }
