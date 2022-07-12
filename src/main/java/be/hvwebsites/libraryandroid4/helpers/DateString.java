@@ -5,6 +5,8 @@ import java.util.Calendar;
 public class DateString {
     // format: ddmmyyyy
     private String dateString;
+    public static final String EMPTY_DATESTRING = " ";
+    private static final long MILLIS_IN_DAY = (1000*60*60*24);
 
     public DateString(String dateString) {
         // Zit er een / in de string
@@ -13,6 +15,14 @@ public class DateString {
         }else {
             this.dateString = dateString;
         }
+    }
+
+    public DateString(long dateInMillis){
+        this.dateString = getDateFromMillis(dateInMillis);
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
     }
 
     public String getDateString() {
@@ -55,6 +65,20 @@ public class DateString {
         return calendarDate;
     }
 
+    private String getDateFromMillis(long inMillis){
+        Calendar calendarDate = Calendar.getInstance();
+        calendarDate.setTimeInMillis(inMillis);
+
+        String day = String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH));
+        String month = String.valueOf(calendarDate.get(Calendar.MONTH));
+        String year = String.valueOf(calendarDate.get(Calendar.YEAR));
+        return day + month + year;
+    }
+
+    public long getDateInMillis(){
+        return getCalendarDate().getTimeInMillis();
+    }
+
     public int calculateDateDifference(DateString inDate){
         Calendar currentdate;
         Calendar previousdate;
@@ -63,7 +87,51 @@ public class DateString {
         previousdate = inDate.getCalendarDate();
 
         return  (int)((currentdate.getTimeInMillis() - previousdate.getTimeInMillis())
-                /(1000*60*60*24));
+                /MILLIS_IN_DAY);
+    }
+
+    public void addNbrOfYears(int freqNumber){
+        String stringDay = dateString.substring(0,2);
+        String stringMonth = dateString.substring(2,4);
+        int year = Integer.parseInt(dateString.substring(4));
+        String stringYear = String.valueOf(year + freqNumber);
+
+        this.dateString = stringDay + stringMonth + stringYear;
+    }
+
+    public void addNbrOfMonths(int freqNumber){
+        int day = Integer.parseInt(dateString.substring(0,2));
+        int month = Integer.parseInt(dateString.substring(2,4));
+        int year = Integer.parseInt(dateString.substring(4));
+        String stringDay = dateString.substring(0,2);
+        String stringMonth = dateString.substring(2,4);
+        String stringYear = dateString.substring(4);
+
+        // Bepaal nieuwe maand en jaar
+        double nbrOfYears = Math.floor(freqNumber / 12);
+        int restOfMonths = (int) (freqNumber - (nbrOfYears * 12));
+        int nMonth = restOfMonths + month;
+        int nYear = (int) (year + nbrOfYears);
+
+        if (nMonth > 12){
+            // we zitten nog 1 jaar verder
+            nYear++;
+            nMonth = nMonth - 12;
+        }
+        stringMonth = String.valueOf(nMonth);
+        stringYear = String.valueOf(nYear);
+        this.dateString = stringDay + stringMonth + stringYear;
+
+        // Corrigeer dag en maand via Calendar bvb 31/2 moet 3/3 zijn indien geen schrikkeljaar
+        this.dateString = getDateFromMillis(getDateInMillis());
+    }
+
+    public void addNbrOfWeeks(int freqNumber){
+        this.dateString = getDateFromMillis(getDateInMillis() + ((long) freqNumber * 7 * MILLIS_IN_DAY));
+    }
+
+    public void addNbrOfDays(int freqNumber){
+        this.dateString = getDateFromMillis(getDateInMillis() + ((long) freqNumber * MILLIS_IN_DAY));
     }
 
     public boolean isEmpty() {
