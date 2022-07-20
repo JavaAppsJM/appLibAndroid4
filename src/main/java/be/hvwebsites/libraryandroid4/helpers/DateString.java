@@ -56,6 +56,10 @@ public class DateString {
         return day + "/" + month + "/" + year;
     }
 
+    public int getIntDate(){
+        return Integer.parseInt(dateString);
+    }
+
     public Calendar getCalendarDate(){
         Calendar calendarDate = Calendar.getInstance();
         int day = Integer.parseInt(dateString.substring(0,2));
