@@ -15,6 +15,12 @@ public class DateString {
         }else {
             this.dateString = dateString;
         }
+        // Afdwingen dat er een correcte date of empty date string in zit
+        final int lowestIntDate = 10011970; // 10 januari 1970
+        final int highestIntDate = 31123000; // 31 december 3000
+        if ((getIntDate() < lowestIntDate) || (getIntDate() > highestIntDate)){
+            setDateString(EMPTY_DATESTRING);
+        }
     }
 
     public DateString(long dateInMillis){
@@ -81,6 +87,16 @@ public class DateString {
 
     public long getDateInMillis(){
         return getCalendarDate().getTimeInMillis();
+    }
+
+    public void setDateToday(){
+        Calendar calendarDate = Calendar.getInstance();
+
+        String day = String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH));
+        String month = String.valueOf(calendarDate.get(Calendar.MONTH));
+        String year = String.valueOf(calendarDate.get(Calendar.YEAR));
+
+        dateString = day + month + year;
     }
 
     public int calculateDateDifference(DateString inDate){
