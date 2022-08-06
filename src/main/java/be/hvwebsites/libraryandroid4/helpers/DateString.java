@@ -1,5 +1,9 @@
 package be.hvwebsites.libraryandroid4.helpers;
 
+import static java.lang.Character.isDigit;
+
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 
 public class DateString {
@@ -9,17 +13,30 @@ public class DateString {
     private static final long MILLIS_IN_DAY = (1000*60*60*24);
 
     public DateString(String dateString) {
-        // Zit er een / in de string
-        if (dateString.contains("/")){
+        // Voldoet de datestring aan dd/mm/jjjj
+        if (isDatePattern(dateString)){
             this.dateString = trimDate(dateString);
         }else {
-            this.dateString = dateString;
-        }
-        // Afdwingen dat er een correcte date of empty date string in zit
-        final int lowestIntDate = 10011970; // 10 januari 1970
-        final int highestIntDate = 31123000; // 31 december 3000
-        if ((getIntDate() < lowestIntDate) || (getIntDate() > highestIntDate)){
-            setDateString(EMPTY_DATESTRING);
+            // Datestring mag alleen cijfers bevatten !
+            boolean containsOnlyDigits = true;
+            char[] dateStringInChar = dateString.toCharArray();
+            for (int i = 0; i < dateStringInChar.length; i++) {
+                if (!isDigit(dateStringInChar[i])){
+                    containsOnlyDigits = false;
+                }
+            }
+            if (!containsOnlyDigits){
+                this.dateString = EMPTY_DATESTRING;
+            }else {
+                // Datestring bevat alleen cijfers
+                // Afdwingen dat er een correcte date of empty date string in zit
+                final int lowestIntDate = 10011970; // 10 januari 1970
+                final int highestIntDate = 31123000; // 31 december 3000
+                this.dateString = dateString;
+                if ((getIntDate() < lowestIntDate) || (getIntDate() > highestIntDate)){
+                    setDateString(EMPTY_DATESTRING);
+                }
+            }
         }
     }
 
@@ -93,7 +110,7 @@ public class DateString {
         Calendar calendarDate = Calendar.getInstance();
 
         String day = String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH));
-        String month = String.valueOf(calendarDate.get(Calendar.MONTH));
+        String month = String.valueOf(calendarDate.get(Calendar.MONTH)+1);
         String year = String.valueOf(calendarDate.get(Calendar.YEAR));
 
         dateString = day + month + year;
@@ -156,5 +173,21 @@ public class DateString {
 
     public boolean isEmpty() {
         return false;
+    }
+
+    private boolean isDatePattern(@NonNull String inString){
+        boolean result = false;
+
+        if (inString.matches("\\d{2}/\\d{2}/\\d{4}")){
+            // Date pattern no leading zero's required
+            result = true;
+        }else if (inString.matches("\\d{1}/\\d{1}/\\d{4}")){
+            result = true;
+        }else if (inString.matches("\\d{1}/\\d{2}/\\d{4}")){
+            result = true;
+        }else if (inString.matches("\\d{2}/\\d{1}/\\d{4}")){
+            result = true;
+        }
+        return result;
     }
 }
