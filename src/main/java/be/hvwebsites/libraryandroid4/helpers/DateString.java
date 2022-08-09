@@ -30,8 +30,8 @@ public class DateString {
             }else {
                 // Datestring bevat alleen cijfers
                 // Afdwingen dat er een correcte date of empty date string in zit
-                final int lowestIntDate = 10011970; // 10 januari 1970
-                final int highestIntDate = 31123000; // 31 december 3000
+                final int lowestIntDate = 19000101; // 1 januari 1970
+                final int highestIntDate = 30001231; // 31 december 3000
                 this.dateString = dateString;
                 if ((getIntDate() < lowestIntDate) || (getIntDate() > highestIntDate)){
                     setDateString(EMPTY_DATESTRING);
@@ -80,7 +80,12 @@ public class DateString {
     }
 
     public int getIntDate(){
-        return Integer.parseInt(dateString);
+        String day = dateString.substring(0,2);
+        String month = dateString.substring(2,4);
+        String year = dateString.substring(4);
+        String revDateString = year + month + day;
+
+        return Integer.parseInt(revDateString);
     }
 
     public Calendar getCalendarDate(){
