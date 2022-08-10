@@ -101,8 +101,8 @@ public class DateString {
         Calendar calendarDate = Calendar.getInstance();
         calendarDate.setTimeInMillis(inMillis);
 
-        String day = String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH));
-        String month = String.valueOf(calendarDate.get(Calendar.MONTH));
+        String day = leadingZero(String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH)));
+        String month = leadingZero(String.valueOf(calendarDate.get(Calendar.MONTH)));
         String year = String.valueOf(calendarDate.get(Calendar.YEAR));
         return day + month + year;
     }
