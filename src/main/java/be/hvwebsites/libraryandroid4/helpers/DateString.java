@@ -9,7 +9,7 @@ import java.util.Calendar;
 public class DateString {
     // format: ddmmyyyy
     private String dateString;
-    public static final String EMPTY_DATESTRING = " ";
+    public static final String EMPTY_DATESTRING = "00000000";
     private static final long MILLIS_IN_DAY = (1000*60*60*24);
 
     public DateString(String dateString) {
@@ -91,7 +91,7 @@ public class DateString {
     public Calendar getCalendarDate(){
         Calendar calendarDate = Calendar.getInstance();
         int day = Integer.parseInt(dateString.substring(0,2));
-        int month = Integer.parseInt(dateString.substring(2,4));
+        int month = Integer.parseInt(dateString.substring(2,4))-1;
         int year = Integer.parseInt(dateString.substring(4));
         calendarDate.set(year, month, day);
         return calendarDate;
