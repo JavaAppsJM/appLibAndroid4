@@ -18,6 +18,8 @@ public class StaticData {
             "be.hvwebsites.EXTRA_INTENT_KEY_RETURN";
     public static final String EXTRA_INTENT_KEY_NAME =
             "be.hvwebsites.EXTRA_INTENT_KEY_NAME";
+    public static final String EXTRA_INTENT_KEY_FILE_BASE =
+            "be.hvwebsites.EXTRA_INTENT_KEY_FILE_BASE";
 
     // Global Constants
     public static final int ITEM_NOT_FOUND = 99999;
