@@ -15,6 +15,19 @@ public class CookieRepository {
         cookieList.addAll(readCookies(basedir));
     }
 
+    public void registerCookie(String label, String value, String fileBase){
+        if (bestaatCookie(label) != COOKIE_NOT_FOUND){
+            // Gevonden cookie vervangen door input value
+            Cookie replaceCookie = new Cookie(label, value);
+            deleteCookie(label);
+            addCookie(replaceCookie);
+        }else {
+            // Cookie met label en value aanmaken want bestaat nog niet
+            Cookie newCookie = new Cookie(label, value);
+            addCookie(newCookie);
+        }
+    }
+
     public String getCookieValueFromLabel(String label){
         if (bestaatCookie(label) != COOKIE_NOT_FOUND){
             return cookieList.get(bestaatCookie(label)).getCookieValue();
@@ -41,6 +54,7 @@ public class CookieRepository {
     }
 
     public int bestaatCookie(String label){
+        // Geeft een int terug met de index in de cookielist waar het cookie gevonden werd
         if (cookieList != null){
             for (int i = 0; i < cookieList.size(); i++) {
                 if (cookieList.get(i).getCookieLabel().equals(label)){
