@@ -15,7 +15,10 @@ public class CookieRepository {
         cookieList.addAll(readCookies(basedir));
     }
 
-    public void registerCookie(String label, String value, String fileBase){
+    public void registerCookie(String label, String value){
+        Cookie newCookie = new Cookie(label, value);
+        addCookie(newCookie);
+/*
         if (bestaatCookie(label) != COOKIE_NOT_FOUND){
             // Gevonden cookie vervangen door input value
             Cookie replaceCookie = new Cookie(label, value);
@@ -26,6 +29,7 @@ public class CookieRepository {
             Cookie newCookie = new Cookie(label, value);
             addCookie(newCookie);
         }
+*/
     }
 
     public String getCookieValueFromLabel(String label){
