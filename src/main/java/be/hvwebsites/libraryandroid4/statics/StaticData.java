@@ -56,5 +56,17 @@ public class StaticData {
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
 
+    // File Base Directory Service
+    public static final String FILE_BASE = "file_base";
+    public static final String FILE_BASE_INTERNAL = "base_internal";
+    public static final String FILE_BASE_EXTERNAL = "base_external";
+
+    // SMS Receiver
+    public static final String SMS_RECEIVER_1 = "0487464825";
+    public static final String SMS_RECEIVER_2 = "0487486725";
+    public static final String SMS_RECEIVER_DEFAULT = SMS_RECEIVER_2;
+    public static final String SMS_LABEL = "sms";
+    public static final String SMS_VALUE_ON = "sms on";
+    public static final String SMS_VALUE_OFF = "sms off";
 
 }
