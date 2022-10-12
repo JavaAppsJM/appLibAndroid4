@@ -22,6 +22,8 @@ public class StaticData {
             "be.hvwebsites.EXTRA_INTENT_KEY_FILE_BASE";
     public static final String EXTRA_INTENT_KEY_FILE_BASE_DIR =
             "be.hvwebsites.EXTRA_INTENT_KEY_FILE_BASE_DIR";
+    public static final String EXTRA_INTENT_KEY_ENTITY =
+            "be.hvwebsites.EXTRA_INTENT_KEY_ENTITY";
 
     // Global Constants
     public static final int ITEM_NOT_FOUND = 99999;
@@ -65,8 +67,13 @@ public class StaticData {
     public static final String SMS_RECEIVER_1 = "0487464825";
     public static final String SMS_RECEIVER_2 = "0487486725";
     public static final String SMS_RECEIVER_DEFAULT = SMS_RECEIVER_2;
+
+    // SMS Status
     public static final String SMS_LABEL = "sms";
     public static final String SMS_VALUE_ON = "sms on";
     public static final String SMS_VALUE_OFF = "sms off";
+
+    // Entity Key Value
+    public static final String ENTITY_KEY_VALUE = "entity";
 
 }
