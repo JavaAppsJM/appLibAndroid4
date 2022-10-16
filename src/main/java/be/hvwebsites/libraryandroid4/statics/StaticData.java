@@ -3,7 +3,7 @@ package be.hvwebsites.libraryandroid4.statics;
 import be.hvwebsites.libraryandroid4.helpers.IDNumber;
 
 public class StaticData {
-    // Intent doorgeef data definities via EXTRAS
+    // Intent,fragment doorgeef data definities
     public static final String EXTRA_INTENT_KEY_TYPE =
             "be.hvwebsites.EXTRA_INTENT_KEY_TYPE";
     public static final String EXTRA_INTENT_KEY_ACTION =
@@ -62,6 +62,7 @@ public class StaticData {
     public static final String FILE_BASE = "file_base";
     public static final String FILE_BASE_INTERNAL = "base_internal";
     public static final String FILE_BASE_EXTERNAL = "base_external";
+    public static final String FILE_BASE_DIR = "filebasedir";
 
     // SMS Receiver
     public static final String SMS_RECEIVER_1 = "0487464825";
