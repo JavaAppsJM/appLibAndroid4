@@ -37,4 +37,8 @@ public class ListItemHelper {
         this.itemStyle = itemStyle;
     }
 
+    @Override
+    public String toString() {
+        return itemtext;
+    }
 }
