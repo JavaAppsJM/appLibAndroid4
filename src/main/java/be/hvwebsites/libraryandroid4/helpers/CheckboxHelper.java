@@ -13,6 +13,16 @@ public class CheckboxHelper {
         this.itemID = inID;
     }
 
+    public CheckboxHelper() {
+    }
+
+    public void setCBHelper(CheckboxHelper inCBHelper){
+        this.name = inCBHelper.getName();
+        this.checked = inCBHelper.isChecked();
+        this.style = inCBHelper.getStyle();
+        this.itemID = inCBHelper.getItemID();
+    }
+
     public IDNumber getItemID() {
         return itemID;
     }
