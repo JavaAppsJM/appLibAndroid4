@@ -4,8 +4,9 @@ public class ReturnInfo {
     private int returnCode = 0;
     private String returnMessage;
 
-    public ReturnInfo(int returnCode) {
+    public ReturnInfo(int returnCode, String returnmsg) {
         this.returnCode = returnCode;
+        this.returnMessage = returnmsg;
     }
 
     public int getReturnCode() {
