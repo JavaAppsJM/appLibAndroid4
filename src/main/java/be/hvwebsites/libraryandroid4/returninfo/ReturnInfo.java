@@ -1,7 +1,7 @@
 package be.hvwebsites.libraryandroid4.returninfo;
 
 public class ReturnInfo {
-    private int returnCode = 0;
+    private int returnCode;
     private String returnMessage;
 
     public ReturnInfo(int returnCode, String returnmsg) {
