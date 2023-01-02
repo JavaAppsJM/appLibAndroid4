@@ -40,7 +40,7 @@ public class FlexiRepository {
     }
 
     public ReturnInfo readDataToList(){
-        ReturnInfo returnInfo = new ReturnInfo(0);
+        ReturnInfo returnInfo = new ReturnInfo(0, "");
         this.dataList.clear();
         // File lezen
         if (flexiFile.exists()){
