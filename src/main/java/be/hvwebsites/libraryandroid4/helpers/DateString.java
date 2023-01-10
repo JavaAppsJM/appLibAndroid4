@@ -102,7 +102,7 @@ public class DateString {
         calendarDate.setTimeInMillis(inMillis);
 
         String day = leadingZero(String.valueOf(calendarDate.get(Calendar.DAY_OF_MONTH)));
-        String month = leadingZero(String.valueOf(calendarDate.get(Calendar.MONTH)));
+        String month = leadingZero(String.valueOf(calendarDate.get(Calendar.MONTH)+1));
         String year = String.valueOf(calendarDate.get(Calendar.YEAR));
         return day + month + year;
     }
@@ -160,7 +160,7 @@ public class DateString {
             nYear++;
             nMonth = nMonth - 12;
         }
-        stringMonth = String.valueOf(nMonth);
+        stringMonth = leadingZero(String.valueOf(nMonth));
         stringYear = String.valueOf(nYear);
         this.dateString = stringDay + stringMonth + stringYear;
 
