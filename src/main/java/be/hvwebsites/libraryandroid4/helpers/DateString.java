@@ -44,6 +44,10 @@ public class DateString {
         this.dateString = getDateFromMillis(dateInMillis);
     }
 
+    public DateString() {
+
+    }
+
     public void setDateString(String dateString) {
         this.dateString = dateString;
     }
