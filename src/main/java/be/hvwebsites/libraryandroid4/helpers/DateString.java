@@ -122,7 +122,7 @@ public class DateString {
         String month = String.valueOf(calendarDate.get(Calendar.MONTH)+1);
         String year = String.valueOf(calendarDate.get(Calendar.YEAR));
 
-        dateString = day + month + year;
+        dateString = leadingZero(day) + leadingZero(month) + year;
     }
 
     public int calculateDateDifference(DateString inDate){
